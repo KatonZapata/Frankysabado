@@ -2,13 +2,26 @@ package com.example.FrankySabado.modelos;
 
 import com.example.FrankySabado.ayudas.Estados;
 import com.example.FrankySabado.ayudas.Roles;
+import jakarta.persistence.*;
 
+//las anotaciones simpre van ensima de lo que yo quiero volver especial
+@Entity
+@Table(name = "usuarios")
 public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "nombre", length = 50, nullable = false)
     private String nombre;
+    @Column(length = 50, nullable = false,unique = true)
     private String correo;
+    @Column(length = 12, nullable = false)
     private String contraseña;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Roles rol;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Estados estado;
 
     public Usuario() {
