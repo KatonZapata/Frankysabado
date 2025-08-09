@@ -2,6 +2,7 @@ package com.example.FrankySabado.modelos;
 
 import com.example.FrankySabado.ayudas.Estados;
 import com.example.FrankySabado.ayudas.Roles;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 //las anotaciones simpre van ensima de lo que yo quiero volver especial
@@ -23,6 +24,11 @@ public class Usuario {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Estados estado;
+
+    //relacionandome con 1 estudiante
+    @OneToOne(mappedBy = "usuario")
+    @JsonBackReference(value = "relacion_estudiante_usuario")
+    private Estudiante estudiante;
 
     public Usuario() {
 
